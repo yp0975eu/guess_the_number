@@ -1,7 +1,7 @@
 import random
 
 correct = 'you guessed correctly!'
-two_low = 'Too Low!!!'
+too_low = 'Too Low!!!'
 too_high = 'too high'
 
 
@@ -35,6 +35,11 @@ def check_guess(guess, secret):
         return too_high
 
 
+def end_game():
+    '''get user input to end game'''
+    user_input =  input('Do you want to end the game? Press y to end. Press any key to play again ')
+    return user_input.lower() == 'y'
+
 def main():
 
     (low, high) = configure_range()
@@ -47,8 +52,10 @@ def main():
         print(result)
 
         if result == correct:
-            break
-    print(f'You guessed {counter} times')    
+            print(f'You guessed {counter} times')
+            counter = 0
+            if end_game():
+              break
     
 
 if __name__ == '__main__':
